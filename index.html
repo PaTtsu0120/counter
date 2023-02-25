@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<style>
+    @font-face {
+    font-family: 'Dovemayo_gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+    #title {
+        font-family: 'Dovemayo_gothic';
+        font-size: 50px;
+        display: flex;
+        flex: column;
+        justify-content: center;
+        align-items: center;
+        background-color: gray;
+        border-radius: 50px;
+        margin-left: 30%;
+        margin-right: 30%;
+        cursor: pointer;
+        text-decoration: none;
+        color: black;
+    }
+
+    #button {
+        font-family: 'Dovemayo_gothic';
+        font-weight: bold;
+        font-size: 30px;
+        margin-left: 43.5%;
+    }
+
+    #count {
+        font-size: 100px;
+        font-family: 'Dovemayo_gothic';
+        background-color: gray;
+        border-radius: 50px;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    #cjs {
+        opacity: 0;
+    }
+
+    .made {
+        font-size: 20px;
+			background: -webkit-linear-gradient(#ee0979, #ff6a00);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+            font-family: 'Dovemayo_gothic';
+            font-weight: bold;
+		}
+
+        body {
+          background-image: url(https://media.tenor.com/EXZllqbo72YAAAAC/mexican-cat-mexican.gif);  
+        }
+</style>
+</head>
+<body onload="document.getElementById('audio').play()">
+    <a href="https://www.youtube.com/@FGcounter." class="title" id="title">
+        운터운터카운터
+    </a>
+    <audio id="audio" src="./levelup.mp3" preload>Level UP!</audio>
+    <button id="button">CLICK!</button>
+    <h1 id="count">버튼을눌러시작</h1>
+    <h1 id="cjs">1000개!</h1>
+    <a class="made" href="https://www.instagram.com/pattsu0120/">made by PaT:tsu</a>
+    <button id="bg-button">배경끄기</button> <button id="bg-on" onclick="playAudio()">배경켜기</button>
+</body>
+<script>
+
+$(document).ready(function() {
+  var count = 0;
+  $('#button').click(function() {
+    count++;
+    $('#count').text(count);
+  });
+  
+  var target = document.querySelector('#count');
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'characterData' && parseInt(mutation.target.textContent) >= 1000) {
+        $('#cjs').css('opacity', '1');
+      }
+    });
+  });
+  var config = { characterData: true, childList: false, subtree: false };
+  observer.observe(target, config);
+});
+document.getElementById("bg-button").addEventListener("click", function() {
+    document.body.style.background = "white";
+  });
+  document.getElementById("bg-on").addEventListener("click", function() {
+    document.body.style.background = "url(https://media.tenor.com/EXZllqbo72YAAAAC/mexican-cat-mexican.gif)";
+  });
+document.getElementById("title").addEventListener("mouseover", function() {
+    document.getElementById("title").style.backgroundColor = "green"
+})
+
+document.getElementById("title").addEventListener("mouseout", function() {
+    document.getElementById("title").style.backgroundColor = "gray"
+})
+
+function playAudio() {
+        var audio = document.getElementById("audio");
+        audio.play();
+      }
+</script>
+</html>
